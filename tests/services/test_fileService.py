@@ -11,3 +11,6 @@ class FileServiceTests(TestCase):
         expected = ["french_armed_forces.txt", "hitchhikers.txt", "warp_drive.txt"]
         actual = self.fs.get_search_files()
         self.assertEqual(expected, actual)
+
+    def test_read_file_should_return_None_if_file_does_not_exist(self):
+        self.assertEqual(None, self.fs.read_file("NonExistent"))
