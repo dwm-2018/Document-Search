@@ -15,7 +15,18 @@ class SearchService:
 
         return search_files
 
-    def regular_expression_search(self):
+    def regular_expression_search(self, search_term):
+        search_files = FileService.get_search_files()
+        for search_file in search_files:
+            search_file.searchTerm = search_term
+            search_file.occurrences = self.conduct_regular_expression_search(search_term, search_file.fileBuffer)
+
+        return search_files
+
+    def index_search(self, search_term):
+        pass
+
+    def build_search_index(self):
         pass
 
     @staticmethod
@@ -24,4 +35,4 @@ class SearchService:
 
     @staticmethod
     def conduct_regular_expression_search(search_term, buffer_to_search):
-        return re.finditer(search_term, buffer_to_search)
+        return len(re.findall(search_term, buffer_to_search))
