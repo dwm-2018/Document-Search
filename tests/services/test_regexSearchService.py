@@ -30,6 +30,4 @@ class RegexSearchServiceTests(TestCase):
     def test_regular_expression_search_search_should_search_files_using_regex(self):
         search_files = FileService.get_search_files()
         result = self.rss.search("\(\d{4}\)", search_files)
-        self.assertEqual(1, result[0].occurrences)
-        self.assertEqual(0, result[1].occurrences)
-        self.assertEqual(0, result[2].occurrences)
+        self.assertEqual(1, len(result))

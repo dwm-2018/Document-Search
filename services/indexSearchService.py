@@ -4,12 +4,14 @@ class IndexSearchService:
         pass
 
     def search(self, search_term, search_index):
-        pass
+        return search_index.get(search_term, [])
 
     def build_search_index(self, search_files):
         master_index = {}
         for file in search_files:
-            pass
+            self.add_inverted_index_to_master_index(master_index, self.build_inverted_index(file.fileBuffer), file.fileName)
+
+        return master_index
 
     def build_inverted_index(self, file_buffer):
         words_list = file_buffer.split()
