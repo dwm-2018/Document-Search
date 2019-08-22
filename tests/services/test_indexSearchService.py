@@ -45,6 +45,12 @@ class IndexSearchServiceTests(TestCase):
         result = self.iss.build_search_index(search_files)
         self.assertEqual(588, len(result))
 
+    def test_build_search_index_should_return_empty_array_if_search_term_isnt_found(self):
+        search_files = FileService.get_search_files()
+        search_index = self.iss.build_search_index(search_files)
+        result = self.iss.search('will not be found', search_index)
+        self.assertEqual(0, len(result))
+
     def test_search_should_search_index_for_term(self):
         search_files = FileService.get_search_files()
         search_index = self.iss.build_search_index(search_files)

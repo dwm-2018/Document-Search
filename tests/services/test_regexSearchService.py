@@ -27,7 +27,12 @@ class RegexSearchServiceTests(TestCase):
         self.assertEqual(expected, result)
 
     # INTEGRATION TEST
-    def test_regular_expression_search_search_should_search_files_using_regex(self):
+    def test_search_should_search_files_using_regex(self):
         search_files = FileService.get_search_files()
         result = self.rss.search("\(\d{4}\)", search_files)
         self.assertEqual(1, len(result))
+
+    def test_search_should_return_empty_array_if_no_result(self):
+        search_files = FileService.get_search_files()
+        result = self.rss.search("teststringreturnsnothing", search_files)
+        self.assertEqual(0, len(result))
