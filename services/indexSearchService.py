@@ -32,7 +32,7 @@ class IndexSearchService:
     def add_inverted_index_to_master_index(master_index, inverted_index, file_name):
         for key, value in inverted_index.items():
             if key in master_index:
-                master_index[key].append({file_name: value})
+                master_index[key].append({'file_name': file_name, 'occurences': value})
             else:
-                master_index[key] = [{file_name: value}]
+                master_index[key] = [{'file_name': file_name, 'occurences': value}]
         return master_index

@@ -23,14 +23,21 @@ class IndexSearchServiceTests(TestCase):
     def test_add_inverted_index_to_master_index_should_create_new_entries_in_master(self):
         master_index = {}
         inverted_index = {'test1': 1, 'test2': 1, 'test3': 1}
-        expected = {'test1': [{'test_file': 1}], 'test2': [{'test_file': 1}], 'test3': [{'test_file': 1}]}
+        expected = {'test1': [{'file_name': 'test_file', 'occurences': 1}],
+                    'test2': [{'file_name': 'test_file', 'occurences': 1}],
+                    'test3': [{'file_name': 'test_file', 'occurences': 1}]}
         result = self.iss.add_inverted_index_to_master_index(master_index, inverted_index, 'test_file')
         self.assertEqual(expected, result)
 
     def test_add_inverted_index_to_master_index_should_merge_inverted_index_into_master(self):
-        master_index = {'test1': [{'test_file': 1}], 'test2': [{'test_file': 1}], 'test3': [{'test_file': 1}]}
+        master_index = {'test1': [{'file_name': 'test_file', 'occurences': 1}],
+                        'test2': [{'file_name': 'test_file', 'occurences': 1}],
+                        'test3': [{'file_name': 'test_file', 'occurences': 1}]}
         inverted_index = {'test3': 5, 'test4': 4}
-        expected = {'test1': [{'test_file': 1}], 'test2': [{'test_file': 1}], 'test3': [{'test_file': 1}, {'test_file_2': 5}], 'test4': [{'test_file_2': 4}]}
+        expected = {'test1': [{'file_name': 'test_file', 'occurences': 1}],
+                    'test2': [{'file_name': 'test_file', 'occurences': 1}],
+                    'test3': [{'file_name': 'test_file', 'occurences': 1}, {'file_name': 'test_file_2', 'occurences': 5}],
+                    'test4': [{'file_name': 'test_file_2', 'occurences': 4}]}
         result = self.iss.add_inverted_index_to_master_index(master_index, inverted_index, 'test_file_2')
         self.assertEqual(expected, result)
 
