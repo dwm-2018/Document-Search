@@ -1,21 +1,27 @@
 import datetime
 import signal
+import sys
 import time
 
 from services.fileService import FileService
 from services.indexSearchService import IndexSearchService
+from services.performanceService import PerformanceService
 from services.regexSearchService import RegexSearchService
 from services.simpleSearchService import SimpleSearchService
 from services.utils import print_result
 
 if __name__ == "__main__":
     search_files = FileService.get_search_files()
+    if sys.argv[1] == "-p":
+        ps = PerformanceService()
+        ps.evaluate()
+        exit()
 
     while True:
         try:
             result = []
             search_term = input("Enter a search term or ctrl-c to quit \n>")
-            search_type = input("\nSelect a search method:\n1) String Match \n2) Regular Expression \n3) Indexed \n>")
+            search_type = input("\nSelect a search method:\n1) String Match \n2) Regular Expression \n3) Indexed \n4) Performance tests\n>")
 
             if search_type == "1":
                 start_time_ms = int(round(time.time() * 1000))

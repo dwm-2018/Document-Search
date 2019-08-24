@@ -17,4 +17,7 @@ py run.py
 ```
 At the prompt, enter a term to search for.  
 You will be prompted to choose the type of search you wish to use.
-
+## Running the performance tests
+```
+py run.py -p
+```

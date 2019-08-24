@@ -45,12 +45,12 @@ class IndexSearchServiceTests(TestCase):
     def test_build_inverted_index_should_build_index_from_string_buffer(self):
         search_files = FileService.get_search_files()
         result = self.iss.build_inverted_index(search_files[0].fileBuffer)
-        self.assertEqual(349, len(result))
+        self.assertEqual(401, len(result))
 
     def test_build_search_index_should_build_master_index_from_multiple_string_files(self):
         search_files = FileService.get_search_files()
         result = self.iss.build_search_index(search_files)
-        self.assertEqual(588, len(result))
+        self.assertEqual(696, len(result))
 
     def test_build_search_index_should_return_empty_array_if_search_term_isnt_found(self):
         search_files = FileService.get_search_files()

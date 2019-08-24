@@ -1,3 +1,5 @@
+import re
+
 
 def print_result(result):
     print("\nSearch Results:")
@@ -8,3 +10,11 @@ def print_result(result):
     for entry in result:
         print("{file_name} - {occurences}".format(file_name=entry['file_name'], occurences=entry['occurences']))
     print("\n")
+
+
+def has_non_alphanumeric(word):
+    return not str(word).isalnum()
+
+
+def remove_non_alphanumeric(word):
+    return re.sub(r'\W+', '', word)

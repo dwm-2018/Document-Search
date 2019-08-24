@@ -1,3 +1,7 @@
+import re
+
+from services.utils import has_non_alphanumeric, remove_non_alphanumeric
+
 
 class IndexSearchService:
     def __init__(self):
@@ -18,10 +22,15 @@ class IndexSearchService:
         inverted_index = {}
         for word in words_list:
             self.add_word_to_dict(word, inverted_index)
+            if has_non_alphanumeric(word):
+                self.add_word_to_dict(remove_non_alphanumeric(word), inverted_index)
         return inverted_index
 
     @staticmethod
     def add_word_to_dict(word, index_dict):
+        if not word:
+            return index_dict
+
         if word in index_dict:
             index_dict[word] += 1
         else:
@@ -36,3 +45,4 @@ class IndexSearchService:
             else:
                 master_index[key] = [{'file_name': file_name, 'occurences': value}]
         return master_index
+
