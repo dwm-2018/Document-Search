@@ -21,3 +21,15 @@ You will be prompted to choose the type of search you wish to use.
 ```
 py run.py -p
 ```
+## Performance test results and analysis
+2M searches with random search terms were run against all three search methods. Timing results were
+as follows:
+```
+Simple Search Elapsed Time: 26351ms
+Regular Expression Search Elapsed Time: 89231ms
+Index Search Elapsed Time: 5808ms
+```
+The Index Search was significantly faster than the other searches. This is because the search against
+the hash index used was an inverse hash. The words of the search files are used as the keys of the hash
+index enabling the complexity of the search to be O(1). The regular expression and simple string search 
+are required to search the entire list of words every search making those searches O(n).
