@@ -33,3 +33,8 @@ The Index Search was significantly faster than the other searches. This is becau
 the hash index used was an inverse hash. The words of the search files are used as the keys of the hash
 index enabling the complexity of the search to be O(1). The regular expression and simple string search 
 are required to search the entire list of words every search making those searches O(n).
+## Changes to allow for scale - 5000 requests/sec or more
+First I would create a FIFO queue to queue the requests and distribute the work across processors. The regex and simple string searches would not 
+scale well for volume of data. The more data there is, the worse
+those searches would get. The larger the queue grew, the longer the wait time would be.  The index search could scale by creating multiple indexes files and searching them 
+in parallel. 

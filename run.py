@@ -1,5 +1,4 @@
-import datetime
-import signal
+
 import sys
 import time
 
@@ -12,7 +11,7 @@ from services.utils import print_result
 
 if __name__ == "__main__":
     search_files = FileService.get_search_files()
-    if sys.argv[1] == "-p":
+    if len(sys.argv) > 1 and sys.argv[1] == "-p":
         ps = PerformanceService()
         ps.evaluate()
         exit()
