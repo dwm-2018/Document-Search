@@ -1,6 +1,6 @@
 # Document Search
-Calculate fertile land area in square meters, sorted from smallest area to greatest and separated by a 
-space, given submitted coordinates of barren land.
+SearchThe goal of this exercise is to create a working program to search a set of documents for 
+the given search term or phrase (single token), and return results in order of relevance.
 ## Preparation
 Install [Python](https://www.python.org/)  
 Pull down the repo.  
