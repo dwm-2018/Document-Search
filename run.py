@@ -20,7 +20,7 @@ if __name__ == "__main__":
         try:
             result = []
             search_term = input("Enter a search term or ctrl-c to quit \n>")
-            search_type = input("\nSelect a search method:\n1) String Match \n2) Regular Expression \n3) Indexed \n4) Performance tests\n>")
+            search_type = input("\nSelect a search method:\n1) String Match \n2) Regular Expression \n3) Indexed \n>")
 
             if search_type == "1":
                 start_time_ms = int(round(time.time() * 1000))
